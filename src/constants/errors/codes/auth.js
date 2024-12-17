@@ -17,7 +17,12 @@ const AUTH_CODES = {
   // ----- Password (120 - 129) ----- //
   auth_120: "Password must be at least 8 characters.",
   auth_121: "Password must be at most 64 characters.",
-  auth_132:
+  auth_122: "Password must contain at least one lowercase letter.",
+  auth_123: "Password must contain at least one uppercase letter.",
+  auth_124: "Password must contain at least one number.",
+  auth_125: "Password must contain at least one special character.",
+
+  auth_126:
     "Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character.",
 };
 
