@@ -12,4 +12,27 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-module.exports = transporter;
+const sendMail = async ({ to, subject, text, html }) => {
+  const mailOptions = {
+    from: `Mourly <${MAIL_USER}>`,
+    subject,
+    html,
+    to,
+    text,
+    envelope: {
+      from: MAIL_USER,
+      to,
+    },
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+
+    return true;
+  } catch (err) {
+    console.log("Send Mail Error: ", err);
+    return false;
+  }
+};
+
+module.exports = { transporter, sendMail };
