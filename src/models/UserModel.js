@@ -8,6 +8,11 @@ const User = sequelize.define(
     id: {
       type: DataTypes.STRING(11),
       primaryKey: true,
+      allowNull: false,
+      validate: {
+        len: [11, 11],
+        isNumeric: true,
+      },
     },
     username: {
       type: DataTypes.STRING(16),
@@ -22,14 +27,24 @@ const User = sequelize.define(
     password: {
       type: DataTypes.STRING(255),
       allowNull: false,
+      validate: {
+        len: [8, 64],
+      },
     },
     avatar: {
       type: DataTypes.STRING(255),
       defaultValue: "default_avatar",
     },
-    verified: {
+    is_verified: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
+    },
+    date_of_birth: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
+      validate: {
+        isDate: true,
+      },
     },
     account_status: {
       type: DataTypes.ENUM(
