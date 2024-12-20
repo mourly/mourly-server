@@ -8,12 +8,27 @@ const {
   validate,
   usernameValidation,
 } = require("../validations");
+const createRateLimiter = require("../middlewares/rateLimitMiddleware");
 
 // xxx/check
 const router = Router();
 
-router.post("/email", emailValidation, validate, emailController);
+const checkRateLimiter = createRateLimiter({ ms: 60 * 1000, max: 15 });
 
-router.post("/username", usernameValidation, validate, usernameController);
+router.post(
+  "/email",
+  checkRateLimiter,
+  emailValidation,
+  validate,
+  emailController
+);
+
+router.post(
+  "/username",
+  checkRateLimiter,
+  usernameValidation,
+  validate,
+  usernameController
+);
 
 module.exports = router;
