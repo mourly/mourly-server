@@ -1,3 +1,4 @@
+const { getErrorMessage } = require("../constants/errors");
 const { generateErrorResponseID } = require("./generateID");
 
 // ----- Success Response ----- //
@@ -36,5 +37,23 @@ const errorResponse = (
   return response;
 };
 
+// ----- Send Error Response ----- //
+const sendErrorResponse = (res, status, { type, details, message, code }) => {
+  let msg;
+
+  if (message) {
+    msg = message;
+  } else {
+    if (code) msg = getErrorMessage(code);
+  }
+
+  res.status(status).json(
+    errorResponse(type, {
+      code,
+      message: msg,
+      details,
+    })
+  );
+};
 // ----- Exports ----- //
-module.exports = { successResponse, errorResponse };
+module.exports = { successResponse, errorResponse, sendErrorResponse };
