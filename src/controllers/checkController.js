@@ -10,13 +10,9 @@ const emailController = async (req, res) => {
   try {
     const user = await User.findOne({ where: { email } });
 
-    if (user) {
-      return res.status(200).json(successResponse());
-    }
-
     return res
-      .status(404)
-      .json(errorResponse(ERROR_TYPES.unknown_err, { code: "auth_111" }));
+      .status(200)
+      .json(successResponse({ valid: user ? false : true }));
   } catch (err) {
     res.status(500).json(errorResponse(ERROR_TYPES.unknown_err));
   }
@@ -29,13 +25,9 @@ const usernameController = async (req, res) => {
   try {
     const user = await User.findOne({ where: { username } });
 
-    if (user) {
-      return res.status(200).json(successResponse());
-    }
-
     return res
-      .status(404)
-      .json(errorResponse(ERROR_TYPES.unknown_err, { code: "auth_104" }));
+      .status(200)
+      .json(successResponse({ valid: user ? false : true }));
   } catch (err) {
     res.status(500).json(errorResponse(ERROR_TYPES.unknown_err));
   }
