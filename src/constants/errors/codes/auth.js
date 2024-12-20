@@ -1,6 +1,12 @@
 const AUTH_CODES = {
   // ----- General ----- //
-  auth_0: "Bu alan boş bırakılamaz.",
+  auth_0: "This field cannot be left empty.",
+  auth_1: "Email or password is incorrect.",
+  auth_2: "You must be 18 years or older to use this application.",
+  auth_3: "You must accept the terms of use.",
+  auth_4: "You must provide a valid access token.",
+  auth_5:
+    "Provide a date value in the correct format (YYYY-MM-DD) to verify your age.",
 
   // ----- Username (100 - 109) ----- //
   auth_100: "Username must be between 3 and 16 characters.",
